@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Jogo educativo de contagem de 1 a 20 para crianças do 1º ano."
+    >
+    <title>Vamos Contar! | MatematicaFC</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
+
+    <main id="main-content" class="app-shell">
+      <header class="app-header">
+        <a class="brand" href="#" aria-label="MatematicaFC - início do jogo">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 64 52" focusable="false">
+              <rect width="64" height="52" rx="16"></rect>
+              <text x="32" y="38">π</text>
+            </svg>
+          </span>
+          <span>MatematicaFC</span>
+        </a>
+
+        <button
+          id="audio-toggle"
+          class="icon-button"
+          type="button"
+          aria-pressed="true"
+          aria-label="Desativar efeitos sonoros"
+        >
+          <svg class="icon icon-sound-on" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 9v6h4l5 4V5L8 9H4Z"></path>
+            <path d="M16 8.5a5 5 0 0 1 0 7"></path>
+            <path d="M18.5 6a8.5 8.5 0 0 1 0 12"></path>
+          </svg>
+          <svg class="icon icon-sound-off" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 9v6h4l5 4V5L8 9H4Z"></path>
+            <path d="m17 9 5 5m0-5-5 5"></path>
+          </svg>
+          <span id="audio-label">Som ligado</span>
+        </button>
+      </header>
+
+      <section id="start-screen" class="screen start-screen" aria-labelledby="game-title">
+        <div class="hero-art" aria-hidden="true">
+          <span class="shape shape-circle"></span>
+          <span class="shape shape-star"></span>
+          <span class="shape shape-triangle"></span>
+          <span class="hero-number hero-number-one">1</span>
+          <span class="hero-number hero-number-two">2</span>
+          <span class="hero-number hero-number-three">3</span>
+        </div>
+
+        <p class="eyebrow">Aprender brincando</p>
+        <h1 id="game-title">Vamos contar?</h1>
+        <p class="lead">
+          Conte os desenhos e escolha o número certo. Serão 10 desafios!
+        </p>
+
+        <fieldset class="level-picker">
+          <legend>Escolha seu nível</legend>
+          <label class="level-card">
+            <input type="radio" name="level" value="1" checked>
+            <span class="level-number" aria-hidden="true">1</span>
+            <span class="level-copy">
+              <strong>Nível 1</strong>
+              <small>Contagem de 1 a 10</small>
+            </span>
+            <span class="radio-indicator" aria-hidden="true"></span>
+          </label>
+
+          <label class="level-card">
+            <input type="radio" name="level" value="2">
+            <span class="level-number level-number-alt" aria-hidden="true">2</span>
+            <span class="level-copy">
+              <strong>Nível 2</strong>
+              <small>Contagem de 1 a 20</small>
+            </span>
+            <span class="radio-indicator" aria-hidden="true"></span>
+          </label>
+        </fieldset>
+
+        <button id="start-button" class="primary-button" type="button">
+          Começar a jogar
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m9 5 7 7-7 7"></path>
+          </svg>
+        </button>
+      </section>
+
+      <section
+        id="game-screen"
+        class="screen game-screen"
+        aria-labelledby="question-title"
+        hidden
+      >
+        <div class="game-status" aria-label="Informações da partida">
+          <div class="progress-group">
+            <span id="question-counter">Pergunta 1 de 10</span>
+            <div
+              class="progress-track"
+              role="progressbar"
+              aria-label="Progresso da partida"
+              aria-valuemin="1"
+              aria-valuemax="10"
+              aria-valuenow="1"
+            >
+              <span id="progress-bar"></span>
+            </div>
+          </div>
+
+          <dl class="stats">
+            <div class="stat stat-score">
+              <dt>Pontos</dt>
+              <dd id="score-value">0</dd>
+            </div>
+            <div class="stat stat-correct">
+              <dt>Acertos</dt>
+              <dd id="correct-value">0</dd>
+            </div>
+            <div class="stat stat-wrong">
+              <dt>Erros</dt>
+              <dd id="wrong-value">0</dd>
+            </div>
+            <div class="stat stat-time">
+              <dt>Tempo</dt>
+              <dd id="time-value">00:00</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="question-card">
+          <p id="level-badge" class="level-badge">Nível 1</p>
+          <h2 id="question-title">Quantos objetos você vê?</h2>
+          <p class="question-hint">Conte com calma e escolha uma resposta.</p>
+
+          <div
+            id="objects-area"
+            class="objects-area"
+            role="img"
+            aria-label=""
+          ></div>
+
+          <div
+            id="feedback"
+            class="feedback"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+          ></div>
+
+          <div id="answers" class="answers" aria-label="Alternativas"></div>
+
+          <button id="next-button" class="primary-button next-button" type="button" hidden>
+            Próxima pergunta
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m9 5 7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <section
+        id="result-screen"
+        class="screen result-screen"
+        aria-labelledby="result-title"
+        hidden
+      >
+        <div id="result-medal" class="result-medal" aria-hidden="true">
+          <svg viewBox="0 0 120 140">
+            <path class="ribbon ribbon-left" d="M28 74 15 130l34-18 11-38Z"></path>
+            <path class="ribbon ribbon-right" d="m92 74 13 56-34-18-11-38Z"></path>
+            <circle cx="60" cy="57" r="46"></circle>
+            <path class="medal-star" d="m60 25 9 19 21 3-15 15 4 21-19-10-19 10 4-21-15-15 21-3Z"></path>
+          </svg>
+        </div>
+        <p class="eyebrow">Partida concluída</p>
+        <h2 id="result-title">Muito bem!</h2>
+        <p id="result-message" class="lead"></p>
+
+        <div class="final-score">
+          <span>Sua pontuação</span>
+          <strong><span id="final-score-value">0</span><small>/10</small></strong>
+        </div>
+
+        <dl class="result-stats">
+          <div>
+            <dt>Acertos</dt>
+            <dd id="final-correct-value">0</dd>
+          </div>
+          <div>
+            <dt>Erros</dt>
+            <dd id="final-wrong-value">0</dd>
+          </div>
+          <div>
+            <dt>Tempo</dt>
+            <dd id="final-time-value">00:00</dd>
+          </div>
+        </dl>
+
+        <div class="result-actions">
+          <button id="restart-button" class="primary-button" type="button">
+            Jogar novamente
+          </button>
+          <button id="change-level-button" class="secondary-button" type="button">
+            Escolher outro nível
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <noscript>
+      <p class="noscript-message">
+        Ative o JavaScript do navegador para jogar.
+      </p>
+    </noscript>
+  </body>
+</html>
