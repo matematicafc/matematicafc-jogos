@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Interativo: Material Dourado com Tuco e Bento</title>
+    <script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1307158125161614"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <main class="app-shell">
+        <header class="app-header">
+            <div class="brand" aria-label="MatematicaFC">
+                <span class="brand-mark" aria-hidden="true">π</span>
+                <span>MatematicaFC</span>
+            </div>
+            <div class="header-theme" aria-hidden="true">
+                <span class="mini-barra"></span>
+                <span class="mini-cubo"></span>
+                <span>Dezenas e unidades</span>
+            </div>
+        </header>
+
+        <div class="quiz-container">
+            <section class="screen active welcome-screen" id="welcome-screen">
+                <div class="hero-scene" aria-hidden="true">
+                    <span class="folha folha-left"></span>
+                    <span class="folha folha-right"></span>
+                    <span class="brilho brilho-one">✦</span>
+                    <span class="brilho brilho-two">✦</span>
+                    <div class="avatar-container">
+                        <div class="coelho-avatar">
+                            <div class="olhos"><div class="olho"></div><div class="olho"></div></div>
+                            <div class="nariz-coelho"></div>
+                            <div class="boca-coelho"></div>
+                        </div>
+                        <div class="urso-avatar">
+                            <div class="olhos"><div class="olho"></div><div class="olho"></div></div>
+                            <div class="focinho-urso"><div class="nariz-urso"></div></div>
+                        </div>
+                    </div>
+                    <div class="hero-material"><span class="barra-dz"></span><span class="cubo-un"></span><span class="cubo-un"></span></div>
+                </div>
+                <p class="eyebrow">Aprender brincando</p>
+                <h1>Material Dourado <span>com Tuco e Bento!</span></h1>
+                <p class="welcome-copy">Olá! Vamos ajudar o coelho Tuco e o urso Bento a compor e decompor números usando barras e cubos mágicos?</p>
+                <button class="btn-primary" type="button" onclick="gerenciarTransicaoAnuncio()">Começar Desafio <span aria-hidden="true">→</span></button>
+            </section>
+
+            <!-- TELA INTERMEDIÁRIA DO ANÚNCIO DE INÍCIO -->
+            <section class="screen ad-screen" id="tela-anuncio-inicio" style="display: none;">
+                <div class="ad-heading">
+                    <div class="loading-cubes" aria-hidden="true"><span></span><span></span><span></span></div>
+                    <p>Carregando o desafio...</p>
+                    <small>Tuco e Bento estão preparando as peças.</small>
+                </div>
+                <div class="bloco-anuncio">
+                    <ins class="adsbygoogle" data-ad-client="ca-pub-1307158125161614" data-ad-format="auto" data-ad-slot="4667476075" full-width-responsive="true" style="display: block;"></ins>
+                    <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
+                </div>
+            </section>
+
+            <section class="screen" id="quiz-screen">
+                <div class="game-layout">
+                    <aside class="status-card">
+                        <div class="question-counter" id="question-number">Pergunta 1 de 20</div>
+                        <div class="progress-bar-container" role="progressbar" aria-label="Progresso do quiz" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0">
+                            <div class="progress-bar" id="progress-bar"></div>
+                        </div>
+                        <div class="score-board">
+                            <span class="score-hits" id="hits-counter">Acertos: 0</span>
+                            <span class="score-errors" id="errors-counter">Erros: 0</span>
+                        </div>
+                        <div class="side-friends" aria-hidden="true">
+                            <div class="friend-mini">
+                                <div class="mini-face mini-rabbit">
+                                    <span class="mini-ear mini-ear-left"></span><span class="mini-ear mini-ear-right"></span>
+                                    <span class="mini-eye mini-eye-left"></span><span class="mini-eye mini-eye-right"></span>
+                                    <span class="mini-rabbit-nose"></span><span class="mini-rabbit-mouth"></span>
+                                </div>
+                                <span>Tuco</span>
+                            </div>
+                            <div class="friend-mini">
+                                <div class="mini-face mini-bear">
+                                    <span class="mini-bear-ear mini-bear-ear-left"></span><span class="mini-bear-ear mini-bear-ear-right"></span>
+                                    <span class="mini-eye mini-eye-left"></span><span class="mini-eye mini-eye-right"></span>
+                                    <span class="mini-bear-muzzle"><i></i></span>
+                                </div>
+                                <span>Bento</span>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <div class="question-card">
+                        <p class="question-type" id="question-type">Material dourado</p>
+                        <div class="question-text" id="question-text">Carregando pergunta...</div>
+                        <div id="zona-interativa"></div>
+                        <div class="options-grid" id="options-container"></div>
+                        <div class="confirm-area">
+                            <button class="btn-primary" id="btn-confirmar-decompor" type="button" onclick="checarDecomposicao()" style="display: none;">Confirmar Resposta <span aria-hidden="true">→</span></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="screen result-screen" id="result-screen">
+                <div class="result-illustration" aria-hidden="true">
+                    <div class="medal"><span>★</span></div>
+                    <span class="result-spark spark-left">✦</span>
+                    <span class="result-spark spark-right">✦</span>
+                </div>
+                <p class="eyebrow">Partida concluída</p>
+                <h1>Desafio Concluído!</h1>
+                <p class="result-copy">Tuco e Bento estão orgulhosos! Você aprendeu tudo sobre dezenas e unidades!</p>
+                <div class="score-circle" id="final-score">0/20</div>
+                <p id="performance-message"></p>
+
+                <!-- ANÚNCIO DE FINAL INTEGRADO ACIMA DO BOTÃO JOGAR NOVAMENTE -->
+                <div class="bloco-anuncio">
+                    <ins class="adsbygoogle" data-ad-client="ca-pub-1307158125161614" data-ad-format="auto" data-ad-slot="6556519659" full-width-responsive="true" style="display: block;"></ins>
+                    <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
+                </div>
+
+                <button class="btn-primary" type="button" onclick="restartQuiz()">Jogar Novamente <span aria-hidden="true">↻</span></button>
+            </section>
+        </div>
+    </main>
+    <script src="js/script.js"></script>
+</body>
+</html>
