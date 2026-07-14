@@ -184,6 +184,15 @@ body.dragging-piece { overflow: hidden; overscroll-behavior: none; touch-action:
 }
 
 @media (max-width: 520px) {
+    .question-card:has(.area-decomposicao) {
+        padding-top: 14px;
+        padding-bottom: 16px;
+    }
+
+    .question-card:has(.area-decomposicao) .question-text {
+        margin-bottom: 12px;
+    }
+
     .app-shell { width: min(100% - 18px,1200px); padding: 10px 0 24px; }
     .app-header { margin-bottom: 10px; }.brand-mark { width: 46px; height: 39px; font-size: 1.75rem; }.header-theme span:last-child { display: none; }
     .welcome-screen, .result-screen, .ad-screen { padding: 24px 16px 28px; border-radius: 22px; }
@@ -318,4 +327,80 @@ body.dragging-piece { overflow: hidden; overscroll-behavior: none; touch-action:
     .result-screen .result-copy { margin-bottom: 12px; }
     .result-screen #performance-message { margin-bottom: 6px; }
     .result-screen .bloco-anuncio { min-height: 0; margin-top: 4px; margin-bottom: 8px; }
+}
+
+@media (max-width: 520px) {
+    .area-decomposicao {
+        position: relative;
+        gap: 6px;
+    }
+
+    .caixa-destino {
+        min-height: 142px;
+        gap: 4px;
+        padding: 27px 40px 8px 8px;
+        overflow: hidden;
+    }
+
+    .caixa-destino .grupo-dezenas {
+        max-width: none;
+        flex: 0 0 auto;
+        flex-wrap: nowrap;
+        gap: 3px;
+    }
+
+    .caixa-destino .grupo-unidades {
+        max-width: none;
+        flex: 0 0 auto;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 1px;
+    }
+
+    .caixa-destino .barra-dz {
+        width: 13px;
+        height: 72px;
+    }
+
+    .caixa-destino .cubo-un {
+        width: 10px;
+        height: 10px;
+    }
+
+    .action-row {
+        position: absolute;
+        z-index: 2;
+        top: 7px;
+        right: 7px;
+    }
+
+    .action-row .btn-limpar {
+        width: 32px;
+        min-height: 32px;
+        padding: 0;
+        overflow: hidden;
+        border-radius: 9px;
+        font-size: 0;
+    }
+
+    .action-row .btn-limpar::before {
+        content: '\00d7';
+        font-size: 1.35rem;
+        line-height: 1;
+    }
+
+    .painel-selecao {
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+
+    .peca-fonte {
+        min-height: 82px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+
+    .confirm-area {
+        margin-top: 7px;
+    }
 }
